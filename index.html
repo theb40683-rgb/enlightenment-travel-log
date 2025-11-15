@@ -171,23 +171,25 @@
       margin-bottom: 0.25rem;
     }
 
-    .site-image {
-      border-radius: 0.75rem;
-      overflow: hidden;
-      background: #e5e7eb;
-      border: 1px solid #e5e7eb;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      min-height: 200px;
-    }
+	.site-image {
+	  border-radius: 0.75rem;
+	  overflow: hidden;
+	  background: #e5e7eb;
+	  border: 1px solid #e5e7eb;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: space-between;
+	  min-height: 200px;
+	  
+	  aspect-ratio: 3 / 2; /* try 16 / 9 if you prefer */
+	}
 
-    .site-image img {
-      width: 100%;
-      display: block;
-      aspect-ratio: 3 / 2;      /* keeps a consistent frame */
-      object-fit: cover;        /* crops edges if needed */
-    }
+	.site-image img {
+	  width: 100%;
+	  height: 100%;
+	  object-fit: cover; /* fills the frame, cropping edges if needed */
+	  display: block;
+	}
 
     .image-caption {
       padding: 0.75rem;
@@ -248,6 +250,21 @@
     }
   </style>
 </head>
+  <!-- Force page to open at the top -->
+  <script>
+    // Stop the browser from restoring old scroll positions
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    // When the page finishes loading, jump to the top
+    window.addEventListener('load', function () {
+      window.scrollTo(0, 0);
+    });
+  </script>
+</body>
+</html>
+
 <body>
   <!-- HEADER -->
   <header>
@@ -263,7 +280,7 @@
   <!-- NAVIGATION -->
   <nav>
     <ul>
-      <li><a href="#intro">Overview</a></li>
+      <li><a href="intro">Overview</a></li>
       <li><a href="#site1">Royal Society, London</a></li>
       <li><a href="#site2">Café Procope, Paris</a></li>
       <li><a href="#site3">Madame Geoffrin’s Salon</a></li>
