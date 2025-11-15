@@ -678,8 +678,19 @@
     </section>
   </main>
 
-  <footer>
+    <footer>
     Time Traveler's Journal – Enlightenment Europe – HIS 112 Creative Project
   </footer>
+
+  <!-- Force page to open at the top -->
+  <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.addEventListener('load', function () {
+      window.scrollTo(0, 0);
+    });
+  </script>
 </body>
 </html>
+
