@@ -249,21 +249,36 @@
       }
     }
   </style>
-</head>
-  <!-- Force page to open at the top -->
+  <!-- Force page to open at the top, even on first visit -->
   <script>
-    // Stop the browser from restoring old scroll positions
+    // Try to disable automatic scroll restoration
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
 
-    // When the page finishes loading, jump to the top
-    window.addEventListener('load', function () {
+    function forceScrollTop() {
       window.scrollTo(0, 0);
+    }
+
+    // On normal load
+    window.addEventListener('load', function () {
+      // Scroll immediately
+      forceScrollTop();
+      // Scroll again shortly after in case layout/images shifted
+      setTimeout(forceScrollTop, 50);
+      setTimeout(forceScrollTop, 200);
+    });
+
+    // On bfcache/page restore (sometimes used by browsers)
+    window.addEventListener('pageshow', function (event) {
+      if (event.persisted) {
+        forceScrollTop();
+      }
     });
   </script>
 </body>
 </html>
+
 
 <body>
   <!-- HEADER -->
@@ -693,4 +708,5 @@
   </script>
 </body>
 </html>
+
 
